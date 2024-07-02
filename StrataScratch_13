@@ -1,0 +1,8 @@
+--Find the number of apartments per nationality that are owned by people under 30 years old. 
+--Output the nationality along with the number of apartments. 
+--Sort records by the apartments count in descending order.
+
+select airbnb_hosts.nationality, count(distinct airbnb_units.unit_id)
+from airbnb_units left join airbnb_hosts on airbnb_units.host_id = airbnb_hosts.host_id
+where age < 30 and airbnb_units.unit_type = 'Apartment'
+group by 1;
